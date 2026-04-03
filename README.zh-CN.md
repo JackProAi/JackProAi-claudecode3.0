@@ -29,6 +29,10 @@
 
 ## 快速开始（Windows）
 ```powershell
+# 从 GitHub 拉取（仓库名是 2.0，但内容已是 3.0 版本）
+git clone https://github.com/JackProAi/JackProAi-claudecode2.0.git JackProAi-claudecode3.0
+cd JackProAi-claudecode3.0
+
 # 首次执行脚本可能需要放开策略
 Set-ExecutionPolicy RemoteSigned -Scope CurrentUser
 

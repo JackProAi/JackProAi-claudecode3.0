@@ -29,6 +29,10 @@
 
 ## Quick Start (Windows)
 ```powershell
+# Clone from GitHub (repo name is 2.0, but content is already the 3.0 release)
+git clone https://github.com/JackProAi/JackProAi-claudecode2.0.git JackProAi-claudecode3.0
+cd JackProAi-claudecode3.0
+
 # If script execution is blocked, run once:
 Set-ExecutionPolicy RemoteSigned -Scope CurrentUser
 
