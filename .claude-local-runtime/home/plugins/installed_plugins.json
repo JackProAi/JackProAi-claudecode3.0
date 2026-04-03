@@ -1,0 +1,14 @@
+﻿{
+    "version":  2,
+    "plugins":  {
+                    "codex@openai-codex":  [
+                                               {
+                                                   "scope":  "user",
+                                                   "lastUpdated":  "2026-04-03T10:31:24.9853968Z",
+                                                   "version":  "1.0.2",
+                                                   "installedAt":  "2026-04-03T10:31:24.9853968Z",
+                                                   "installPath":  "D:\\AIclaudecode\\3.0\\JackProAi-claudecode3.0\\.claude-local-runtime\\home\\plugins\\cache\\\\openai-codex\\\\codex\\\\1.0.2"
+                                               }
+                                           ]
+                }
+}

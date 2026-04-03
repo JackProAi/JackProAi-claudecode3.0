@@ -1,0 +1,129 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+RUNTIME_DIR="${CLAUDE_LOCAL_RUNTIME_DIR:-$ROOT_DIR/.claude-local-runtime}"
+ROOT_ENV_FILE="${CLAUDE_LOCAL_ENV_FILE:-$ROOT_DIR/claude-local.env}"
+RUNTIME_ENV_FILE="$RUNTIME_DIR/env"
+LEGACY_ENV_FILE="$ROOT_DIR/.ccsmap-runtime/env"
+SELECTED_ENV_FILE=""
+
+write_default_env() {
+  cat > "$ROOT_ENV_FILE" <<'EOF'
+# Claude Local API configuration
+#
+# File to edit:
+#   claude-local.env
+#
+# Kimi example:
+CLAUDE_LOCAL_PROVIDER=kimi
+ANTHROPIC_AUTH_TOKEN=paste_your_api_key_here
+#
+# Optional advanced overrides:
+ANTHROPIC_BASE_URL=
+ANTHROPIC_MODEL=
+ANTHROPIC_SMALL_FAST_MODEL=
+EOF
+}
+
+if [[ "${1:-}" == "--init-env" ]]; then
+  if [[ -f "$ROOT_ENV_FILE" ]]; then
+    echo "Already exists: $ROOT_ENV_FILE"
+  else
+    write_default_env
+    echo "Created: $ROOT_ENV_FILE"
+    echo "Open this file and replace ANTHROPIC_AUTH_TOKEN with your real API key."
+  fi
+  exit 0
+fi
+
+mkdir -p \
+  "$RUNTIME_DIR/home" \
+  "$RUNTIME_DIR/xdg-config" \
+  "$RUNTIME_DIR/xdg-data" \
+  "$RUNTIME_DIR/xdg-state" \
+  "$RUNTIME_DIR/tmp"
+
+export HOME="$RUNTIME_DIR/home"
+export XDG_CONFIG_HOME="$RUNTIME_DIR/xdg-config"
+export XDG_DATA_HOME="$RUNTIME_DIR/xdg-data"
+export XDG_STATE_HOME="$RUNTIME_DIR/xdg-state"
+export TMPDIR="$RUNTIME_DIR/tmp"
+# Keep Claude global state local to this project runtime dir on all platforms.
+export CLAUDE_CONFIG_DIR="${CLAUDE_CONFIG_DIR:-$RUNTIME_DIR/home}"
+# Enable fullscreen/alt-screen rendering by default to avoid duplicated redraw
+# blocks in scrollback during window resize on some terminals.
+export CLAUDE_CODE_NO_FLICKER="${CLAUDE_CODE_NO_FLICKER:-1}"
+
+if [[ -f "$ROOT_ENV_FILE" ]]; then
+  SELECTED_ENV_FILE="$ROOT_ENV_FILE"
+  set -a
+  # shellcheck disable=SC1090
+  source "$ROOT_ENV_FILE"
+  set +a
+elif [[ -f "$RUNTIME_ENV_FILE" ]]; then
+  SELECTED_ENV_FILE="$RUNTIME_ENV_FILE"
+  set -a
+  # shellcheck disable=SC1090
+  source "$RUNTIME_ENV_FILE"
+  set +a
+elif [[ -f "$LEGACY_ENV_FILE" ]]; then
+  SELECTED_ENV_FILE="$LEGACY_ENV_FILE"
+  set -a
+  # shellcheck disable=SC1090
+  source "$LEGACY_ENV_FILE"
+  set +a
+fi
+
+if [[ -z "$SELECTED_ENV_FILE" ]]; then
+  write_default_env
+  cat <<EOF >&2
+Created API config file:
+  $ROOT_ENV_FILE
+
+Open this file and replace:
+  ANTHROPIC_AUTH_TOKEN=paste_your_api_key_here
+
+Then run:
+  ./claude-local --bare
+EOF
+  exit 1
+fi
+
+if [[ -z "${ANTHROPIC_AUTH_TOKEN:-}" && -n "${ANTHROPIC_API_KEY:-}" ]]; then
+  export ANTHROPIC_AUTH_TOKEN="$ANTHROPIC_API_KEY"
+fi
+
+case "${CLAUDE_LOCAL_PROVIDER:-}" in
+  kimi|KIMI|moonshot|MOONSHOT)
+    export ANTHROPIC_BASE_URL="${ANTHROPIC_BASE_URL:-https://api.moonshot.cn/anthropic}"
+    export ANTHROPIC_MODEL="${ANTHROPIC_MODEL:-kimi-k2-0905-preview}"
+    export ANTHROPIC_SMALL_FAST_MODEL="${ANTHROPIC_SMALL_FAST_MODEL:-kimi-k2-turbo-preview}"
+    ;;
+esac
+
+if [[ -z "${ANTHROPIC_AUTH_TOKEN:-}" ]]; then
+  cat <<EOF >&2
+Missing ANTHROPIC_AUTH_TOKEN in $SELECTED_ENV_FILE
+
+Example:
+  CLAUDE_LOCAL_PROVIDER=kimi
+  ANTHROPIC_AUTH_TOKEN=your_token_here
+EOF
+  exit 1
+fi
+
+if [[ "${ANTHROPIC_AUTH_TOKEN:-}" == "paste_your_api_key_here" ]]; then
+  cat <<EOF >&2
+Edit this file first:
+  $SELECTED_ENV_FILE
+
+Replace:
+  ANTHROPIC_AUTH_TOKEN=paste_your_api_key_here
+
+With your real API key, then run ./claude-local --bare again.
+EOF
+  exit 1
+fi
+
+exec node "$ROOT_DIR/package/cli.js" "$@"

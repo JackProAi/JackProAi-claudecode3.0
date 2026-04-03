@@ -1,0 +1,15 @@
+﻿.ccsmap-runtime/
+.claude-local-runtime/
+claude-local.env
+.tmp-claude-local.env
+.claude/
+isolated-home/
+isolated-tmp/
+isolated-xdg-config/
+isolated-xdg-data/
+isolated-xdg-state/
+test_folder/
+ccsmap
+*.log
+.tmp-buddy-scan/
+package/cli.js.bak-2.1.88

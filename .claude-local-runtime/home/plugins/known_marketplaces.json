@@ -1,0 +1,18 @@
+﻿{
+    "claude-plugins-official":  {
+                                    "installLocation":  "D:\\AIclaudecode\\3.0\\JackProAi-claudecode3.0\\.claude-local-runtime\\home\\plugins\\marketplaces\\\\claude-plugins-official",
+                                    "lastUpdated":  "2026-04-03T10:31:24.9633853Z",
+                                    "source":  {
+                                                   "repo":  "anthropics/claude-plugins-official",
+                                                   "source":  "github"
+                                               }
+                                },
+    "openai-codex":  {
+                         "installLocation":  "D:\\AIclaudecode\\3.0\\JackProAi-claudecode3.0\\.claude-local-runtime\\home\\plugins\\marketplaces\\\\openai-codex",
+                         "lastUpdated":  "2026-04-03T10:31:24.9653851Z",
+                         "source":  {
+                                        "repo":  "openai/codex-plugin-cc",
+                                        "source":  "github"
+                                    }
+                     }
+}
