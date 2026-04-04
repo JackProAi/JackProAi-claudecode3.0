@@ -8,6 +8,10 @@ All notable changes to this project will be documented in this file.
 ### Changed / 变更
 - Updated project naming in documentation from `JackProAi-claudecode3.0` to `JackProAi-claudecode3.1`.
 - 文档中的项目命名已从 `JackProAi-claudecode3.0` 更新为 `JackProAi-claudecode3.1`。
+- Performed wording cleanup to avoid "official release" misunderstanding and added explicit non-affiliation language.
+- 新增并统一了“非官方/无隶属关系”的措辞，降低“官方版本”误解风险。
+- Added compliance file `COMPLIANCE.md` and linked it from both README files.
+- 新增 `COMPLIANCE.md` 合规说明文件，并在中英文 README 中加入入口链接。
 
 ### Fixed / 修复
 - Fixed garbled Chinese text when copying from the alt-screen (black box) area on Windows.

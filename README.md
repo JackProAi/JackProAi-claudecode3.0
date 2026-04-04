@@ -1,15 +1,20 @@
 # JackProAi-claudecode3.1 (Local Deployment Edition, Unofficial)
 
-> Unofficial local deployment build based on the leaked `2026-03-31` Claude Code package and restored source maps.
+> Third-party local deployment adaptation for compatibility testing and architecture study, organized from archived package files and restored source maps.
 
 > If you need remote installation or custom feature development, add the author on WeChat: `JACKPROAI` (state your purpose; paid service).
 
 [中文文档](./README.zh-CN.md)
 [Changelog](./CHANGELOG.md)
+[Compliance / 合规说明](./COMPLIANCE.md)
 
 ## Disclaimer
 - This repository is **not** an official Anthropic release.
+- This repository is **not affiliated with, endorsed by, or operated by** Anthropic.
+- "Claude" and "Anthropic" are trademarks of their respective owners and are used only for compatibility description.
 - It is for local deployment practice and architecture research only. Please evaluate the risks yourself.
+- Keep upstream legal files (for example `package/LICENSE.md`) when redistributing this project.
+- Some files under `package/` are upstream originals kept for compatibility and legal traceability.
 
 ## Current Repository Contents (Verified Against This Folder)
 - Launch entrypoints:
@@ -166,4 +171,5 @@ JackProAi-claudecode3.1
 - Runtime data is stored under `.claude-local-runtime/` by default.
 - Scripts enable `CLAUDE_CODE_NO_FLICKER=1` by default to reduce redraw/flicker issues.
 - If terminal output appears garbled, start with `start-claude-local.bat` or `start-claude-local.ps1` first.
+- This project must not be described or published as an official product release.
 - For remote installation or custom feature development, add the author on WeChat: `JACKPROAI` (state your purpose; paid service).

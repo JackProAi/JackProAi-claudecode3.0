@@ -1,15 +1,20 @@
 # JackProAi-claudecode3.1（本地部署版，非官方）
 
-> 基于 `2026-03-31` 泄露包与 Source Map 还原整理的 Claude Code 本地部署版本（非官方）。
+> 第三方本地部署兼容实现，用于兼容性测试与架构研究；由归档包文件和 Source Map 还原内容整理而成。
 
 > 如需远程安装或定制功能，可加博主微信：`JACKPROAI`（注明来意，有偿）。
 
 [Read English Documentation](./README.md)
 [更新日志](./CHANGELOG.md)
+[合规说明 / Compliance](./COMPLIANCE.md)
 
 ## 免责声明
 - 本仓库**不是** Anthropic 官方发布版本。
+- 本仓库与 Anthropic **无隶属、无背书、无运营关系**。
+- 文档中出现的 “Claude”“Anthropic” 等名称，仅用于兼容性说明；相关商标归其权利人所有。
 - 仅用于本地部署实践与架构研究学习，请自行评估使用风险。
+- 二次分发时请保留上游法律文件（例如 `package/LICENSE.md`）。
+- `package/` 目录内部分文件为上游原始文件，保留用于兼容性与法律追溯。
 
 ## 当前仓库内容（已按目录核对）
 - 启动入口：
@@ -166,4 +171,5 @@ JackProAi-claudecode3.1
 - 运行态数据默认写入 `.claude-local-runtime/`。
 - 脚本默认启用 `CLAUDE_CODE_NO_FLICKER=1`，用于减少终端重绘闪烁问题。
 - 如终端出现乱码或异常，优先使用 `start-claude-local.bat` 或 `start-claude-local.ps1` 启动。
+- 请勿将本项目包装、宣传或发布为“官方版本”。
 - 如需远程安装或定制功能，可加博主微信：`JACKPROAI`（注明来意，有偿）。
