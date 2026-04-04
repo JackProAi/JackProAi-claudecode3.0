@@ -2,7 +2,9 @@
 
 > Third-party local deployment adaptation for compatibility testing and architecture study, organized from archived package files and restored source maps.
 
-> If you need remote installation or custom feature development, add the author on WeChat: `JACKPROAI` (state your purpose; paid service).
+> If you need remote installation or custom feature development, add the author on WeChat: <font color="#22c55e">JACKPROAI</font> (state your purpose; paid service).
+>
+> **Douyin/Bilibili/Xiaohongshu: <font color="#22c55e">JACK的AI视界</font>. WeChat Official Account: <font color="#22c55e">JACK带你玩AI</font>.**
 
 [中文文档](./README.zh-CN.md)
 [Changelog](./CHANGELOG.md)
@@ -172,4 +174,4 @@ JackProAi-claudecode3.1
 - Scripts enable `CLAUDE_CODE_NO_FLICKER=1` by default to reduce redraw/flicker issues.
 - If terminal output appears garbled, start with `start-claude-local.bat` or `start-claude-local.ps1` first.
 - This project must not be described or published as an official product release.
-- For remote installation or custom feature development, add the author on WeChat: `JACKPROAI` (state your purpose; paid service).
+- For remote installation or custom feature development, add the author on WeChat: <font color="#22c55e">JACKPROAI</font> (state your purpose; paid service).
